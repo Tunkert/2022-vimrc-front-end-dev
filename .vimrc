@@ -52,10 +52,11 @@ Plug 'https://github.com/jiangmiao/auto-pairs.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/junegunn/goyo.vim.git'
 Plug 'https://github.com/lifepillar/vim-mucomplete.git'
-Plug 'https://github.com/crusoexia/vim-monokai.git'
 Plug 'https://github.com/kien/ctrlp.vim.git'
 Plug 'https://github.com/prettier/vim-prettier'
 Plug 'https://github.com/AndrewRadev/tagalong.vim.git'
+Plug 'https://github.com/vim-airline/vim-airline.git'
+Plug 'https://github.com/gruvbox-community/gruvbox.git'
 
 call plug#end()
 
@@ -67,14 +68,38 @@ let g:mucomplete#enable_auto_at_startup = 1
 
 let g:tagalong_filetypes = ['html']
 
-colorscheme monokai
+set background=dark
+colorscheme gruvbox 
+
+let g:airline_theme = 'gruvbox'
 
 inoremap jj <Esc>
 
-set tabstop=2 softtabstop=2
-set shiftwidth=2
+set tabstop=4 softtabstop=4
+set shiftwidth=4
 set expandtab
+set autoindent
+set smartindent
 
 set clipboard=unnamed
 
 set scrolloff=5
+
+let &t_SI.="\e[5 q" "SI = INSERT mode
+let &t_SR.="\e[4 q" "SR = REPLACE mode
+let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
+
+inoremap <c-t> <Esc>:term<cr>
+nnoremap <c-t> <Esc>:term<cr>
+
+inoremap <c-b> <Esc>:Ex<cr>
+nnoremap <c-b> <Esc>:Ex<cr>
+
+inoremap <c-a> <Esc>:Goyo<cr>
+nnoremap <c-a> <Esc>:Goyo<cr>
+
+inoremap <c-s> <Esc>:w<cr>
+nnoremap <c-s> <Esc>:w<cr>
+
+inoremap <c-q> <Esc>:qa<cr>
+nnoremap <c-q> <Esc>:qa<cr>
